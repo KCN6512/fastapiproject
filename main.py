@@ -11,9 +11,26 @@ def get_user_item(pk: int, item: str):
     return {'user': pk, 'item': item}
 
 @app.post('/book/')
-def create_book(item : Book):
-    return 
+def create_book(item : Book, author: Author, quantity: int = Body(...)): #Body делает параметр передаваевым в теле а не в url
+    return {'item': item, 'author': author, 'quantity': quantity}
     
+@app.post('/author/')
+def create_author(author: Author):
+    '''
+    {
+  "author": {
+    "first_name": "string",
+    "last_name": "string"
+  }
+} с включенным Body embed True
+
+{
+  "first_name": "string",
+  "last_name": "string"
+} без embed
+    '''
+    return {'author': author}
+
 @app.get('/book/')
 def get_book(q: list[str] = Query(['testbook','testbook2'], min_length=2, max_length=10, description='search Book')): #первое значение = значвение по умолчанию| сделать его обязательным = ...| regex регулярка | deprecated=True пометить параметр как устаревший| query нужно для параметров в get запросе
     return q

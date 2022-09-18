@@ -11,3 +11,6 @@ class Book(BaseModel):
     genres: list[Genre]
     date: date
 
+class Author(BaseModel):
+    first_name: str
+    last_name: str
