@@ -5,13 +5,17 @@ app = FastAPI()
 
 #Query = /?skip=0&limit=10
 #Path = /items/foo
+# Path url путь
+# Query гет запрос в url
+# Body отправить параметр как тело body 
+# body embed = True значит добавить в json тело имя параметра
 
 @app.get('/user/{pk}/items/{item}/')
 def get_user_item(pk: int, item: str):
     return {'user': pk, 'item': item}
 
 @app.post('/book/')
-def create_book(item : Book, author: Author, quantity: int = Body(...)): #Body делает параметр передаваевым в теле а не в url
+def create_book(item : Book, author: Author, quantity: int = Body(..., embed=True)): #Body делает параметр передаваевым в теле а не в url
     return {'item': item, 'author': author, 'quantity': quantity}
     
 @app.post('/author/')
