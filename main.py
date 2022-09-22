@@ -1,7 +1,7 @@
 from fastapi import *
 from schemas import *
 #docs_url=None, redoc_url=None отключить документацию docs и redoc
-app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI() #docs_url=None, redoc_url=None
 
 #Query = /?skip=0&limit=10
 #Path = /items/foo
