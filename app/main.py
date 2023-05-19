@@ -1,5 +1,5 @@
 from fastapi import *
-from schemas import *
+from .schemas import *
 #docs_url=None, redoc_url=None отключить документацию docs и redoc
 app = FastAPI() 
 
@@ -49,5 +49,5 @@ def get_book_id(pk: int = Path(..., gt=1, le=20), pages: int=Query(gt=10, le=500
 
 if __name__ == "__main__":
     import os
-    command = 'uvicorn main:app --reload'
+    command = 'uvicorn app.main:app --reload'
     os.system(command)    
