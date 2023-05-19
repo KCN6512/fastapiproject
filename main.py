@@ -1,7 +1,7 @@
 from fastapi import *
 from schemas import *
 #docs_url=None, redoc_url=None отключить документацию docs и redoc
-app = FastAPI() #docs_url=None, redoc_url=None
+app = FastAPI() 
 
 #Query = /?skip=0&limit=10
 #Path = /items/foo
@@ -9,6 +9,10 @@ app = FastAPI() #docs_url=None, redoc_url=None
 # Query гет запрос в url
 # Body отправить параметр как тело body 
 # body embed = True значит добавить в json тело имя параметра
+
+@app.get('/')
+def home():
+  return {'Hello': 'world'}
 
 @app.get('/user/{pk}/items/{item}/')
 def get_user_item(pk: int, item: str):
