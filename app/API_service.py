@@ -32,7 +32,7 @@ app = FastAPI()
 async def home():
 	return {'text': 'home_page'}
 
-if __name__ == "__main__":
-	import os
-	command = 'uvicorn app.API_service:app --reload'
-	os.system(command)    
+# if __name__ == "__main__":
+# 	import os
+# 	command = 'uvicorn app.API_service:app --reload'
+# 	os.system(command)    
