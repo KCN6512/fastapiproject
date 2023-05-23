@@ -1,5 +1,6 @@
+from typing import Optional, Any
 import psycopg2
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from decouple import config
 
 app = FastAPI()
@@ -20,9 +21,16 @@ app = FastAPI()
 # conn.close()
 # print(all_actors[0][0][0]['content'])
 
+# @app.get('/')
+# def home(params: list[int] | None = Query(lt=10, default=None), **other: Any | None):
+#     print(other.items())
+#     return {'text': 'home_page'}, params, other
+
+# If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use async def.
+
 @app.get('/')
-def home():
-    return {'text': 'home_page'}
+async def home():
+	return {'text': 'home_page'}
 
 if __name__ == "__main__":
 	import os
