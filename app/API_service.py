@@ -1,4 +1,4 @@
-from enum import Enum
+from functools import wraps
 import json
 import os
 from typing import Optional, Any
@@ -36,27 +36,13 @@ async def home():
 	return {'text': 'home_page'}
 
 @app.get('/product/{product}')
-async def product(product: str):
+async def product(product: str, q: int, j: float = 15.7,integer: int | None = 0): #product required path, q required, j required with default value, integer non required
 	return {'product': product}
-
-class ProductName(str, Enum):
-    smartphone = "smartphone"
-    tv = "tv"
-    cpu = "cpu"
-
-@app.get("/products/{product_name}")
-async def get_product(product_name: ProductName):
-    if product_name is ProductName.smartphone:
-        return {"product_name": product_name, "message": "smartphone"}
-
-    if product_name.value == "tv":
-        return {"product_name": product_name, "message": "tv"}
-
-    return {"product_name": product_name, "message": "cpu"}
 
 @app.get("/files/{file_path:path}")
 async def read_file(file_path: str):
     print(file_path)
     print(os.path.exists(file_path))
     return {"file_path": file_path}
+
 
