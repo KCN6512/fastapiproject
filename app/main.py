@@ -1,3 +1,4 @@
+from enum import Enum
 import requests
 from fastapi import *
 from .schemas import *
@@ -49,6 +50,21 @@ def get_book(q: list[str] = Query(['testbook','testbook2'], min_length=2, max_le
 @app.get('/book/{pk}')
 def get_book_id(pk: int = Path(..., gt=1, le=20), pages: int=Query(gt=10, le=500)):
 	return {'pk': pk, 'pages':pages}
+
+class ProductName(str, Enum):
+    smartphone = "smartphone"
+    tv = "tv"
+    cpu = "cpu"
+
+@app.get("/products/{product_name}")
+async def get_product(product_name: ProductName):
+    if product_name is ProductName.smartphone:
+        return {"product_name": product_name, "message": "smartphone"}
+
+    if product_name.value == "tv":
+        return {"product_name": product_name, "message": "tv"}
+
+    return {"product_name": product_name, "message": "cpu"}
 
 if __name__ == "__main__":
 	import os

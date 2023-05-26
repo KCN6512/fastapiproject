@@ -65,7 +65,20 @@ def test_create_existing_item():
     assert response.status_code == 400
     assert response.json() == {"detail": "Item already exists"}
 
+class ProductName(str, Enum):
+    smartphone = "smartphone"
+    tv = "tv"
+    cpu = "cpu"
 
+@app.get("/products/{product_name}")
+async def get_product(product_name: ProductName):
+    if product_name is ProductName.smartphone:
+        return {"product_name": product_name, "message": "smartphone"}
+
+    if product_name.value == "tv":
+        return {"product_name": product_name, "message": "tv"}
+
+    return {"product_name": product_name, "message": "cpu"}
 
 def test_read_homepage():
     response = client.get('/')
