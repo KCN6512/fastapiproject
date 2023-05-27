@@ -5,6 +5,7 @@ from typing import Optional, Any
 import psycopg2
 from fastapi import FastAPI, Query
 from decouple import config
+from .models import *
 
 app = FastAPI()
 
@@ -45,4 +46,6 @@ async def read_file(file_path: str):
     print(os.path.exists(file_path))
     return {"file_path": file_path}
 
-
+@app.post('/{product}')
+async def model_product(product: Product):
+	return product

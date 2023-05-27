@@ -10,6 +10,7 @@ class Book(BaseModel):
     pages: int
     genres: list[Genre]
     date: date
+    author: Author
 
 class Author(BaseModel):
     first_name: str = Field(min_length=2)
