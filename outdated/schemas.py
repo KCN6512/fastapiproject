@@ -1,5 +1,7 @@
 from datetime import date
+
 from pydantic import *
+
 
 class Genre(BaseModel):
     name: str

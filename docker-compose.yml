@@ -8,3 +8,5 @@ services:
       - ./app:/app
     command: >
       sh -c "uvicorn API_service:app --reload --host 0.0.0.0"
+
+# docker compose --file "C:\Users\trosh\Desktop\pitoncheg\Python_work\fastapi\docker-compose.yml" --project-name "fastapi" up

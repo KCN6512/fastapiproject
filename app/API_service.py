@@ -1,11 +1,12 @@
-from functools import wraps
 import json
 import os
-from typing import Optional, Any
+from typing import Annotated, Any
+
 import psycopg2
-from fastapi import FastAPI, Query
 from decouple import config
 from models import Product
+
+from fastapi import FastAPI, Query
 
 app = FastAPI()
 

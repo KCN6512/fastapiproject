@@ -1,7 +1,11 @@
 from enum import Enum
+
 import requests
+
 from fastapi import *
+
 from .schemas import *
+
 #docs_url=None, redoc_url=None отключить документацию docs и redoc
 app = FastAPI() 
 
