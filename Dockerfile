@@ -11,5 +11,3 @@ EXPOSE 8000
 
 RUN adduser --disabled-password fastapi-user
 USER fastapi-user
-#comment 2
-#comment 3
