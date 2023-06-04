@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Category(BaseModel):
@@ -6,7 +6,7 @@ class Category(BaseModel):
 
 
 class Product(BaseModel):
-    name: str
+    name: str = Field(title='item name',default='default_name', max_length=100)
     description: str | None = 'default_description' # non required field with default value
-    price: float
+    price: float = Field(gt=1.0)
     category: Category
