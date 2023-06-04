@@ -80,4 +80,3 @@ async def multiple_bodies(product_id: int, category: Category, product: Annotate
 
 # new test comment in a new test branch
 # another one new branch comment
-# statis test
