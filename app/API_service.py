@@ -6,7 +6,7 @@ import psycopg2
 from decouple import config
 from models import Product
 
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Path, Response
 
 app = FastAPI()
 
@@ -50,3 +50,11 @@ async def read_file(file_path: str):
 @app.post('/product_model')
 async def create_model_product(product: Product):
 	return product
+
+@app.get('/product_annotated/')
+async def annotated_product(product: Annotated[str,
+					        Query(max_length=10)] = 'default_name'): # if Query need Annotated
+	return {'product': product}
+
+
+#Required with Ellipsis (...)
