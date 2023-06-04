@@ -76,7 +76,3 @@ async def read_items(
 @app.post('/multiple_bodies/{product_id}')
 async def multiple_bodies(product_id: int, category: Category, product: Annotated[Product, Body(embed=False)], body: Annotated[float, Body(gt=10.0, embed=False)] = 10.3):
 	return {'product': product, 'category': category}
-
-
-# new test comment in a new test branch
-# another one new branch comment
