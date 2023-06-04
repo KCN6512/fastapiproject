@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class Category(BaseModel):
-    name: str
+    name: str = 'default_name'
 
 
 class Product(BaseModel):
