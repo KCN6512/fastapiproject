@@ -4,9 +4,9 @@ from typing import Annotated, Any
 
 import psycopg2
 from decouple import config
-from models import Product
+from models import Product, Category
 
-from fastapi import FastAPI, Query, Path, Response
+from fastapi import FastAPI, Query, Path, Body
 
 app = FastAPI()
 
@@ -53,8 +53,28 @@ async def create_model_product(product: Product):
 
 @app.get('/product_annotated/')
 async def annotated_product(product: Annotated[str,
-					        Query(max_length=10)] = 'default_name'): # if Query need Annotated
+					        Query(max_length=10, deprecated=True)] = 'default_name'): # if Query need Annotated
 	return {'product': product}
 
 
-#Required with Ellipsis (...)
+@app.get('/Ellipsis_required/')
+async def annotated_product_ellipsis(product: Annotated[str,
+					        Query(max_length=10)] = ...): # Ellipsis ... makes query required
+	return {'product': product}
+
+
+@app.get("/items/{item_id}")
+async def read_items(
+    item_id: Annotated[int, Path(title="The ID of the item to get")],
+    q: Annotated[str | None, Query(alias="item-query")] = None,
+):
+    results = {"item_id": item_id}
+    if q:
+        results.update({"q": q})
+    return results
+
+@app.post('/multiple_bodies/{product_id}')
+async def multiple_bodies(product_id: int, category: Category, product: Annotated[Product, Body(embed=False)], body: Annotated[float, Body(gt=10.0, embed=False)] = 10.3):
+	return {'product': product, 'category': category}
+
+
