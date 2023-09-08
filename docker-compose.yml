@@ -7,6 +7,15 @@ services:
     volumes:
       - ./app:/app
     command: >
-      sh -c "uvicorn API_service:app --reload --host 0.0.0.0"
+      sh -c "uvicorn app.API_service:app --reload --host 0.0.0.0"
+    env_file:
+      - .env
+
+  database:
+    image: postgres:15-alpine
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
 
 # docker compose --file "C:\Users\trosh\Desktop\pitoncheg\Python_work\fastapi\docker-compose.yml" --project-name "fastapi" up
